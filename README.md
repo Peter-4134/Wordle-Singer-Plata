@@ -1,0 +1,2 @@
+# Wordle-Singer-Plata
+SEW
