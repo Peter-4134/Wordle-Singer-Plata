@@ -16,6 +16,7 @@ public class GUI extends Application {
 
     TextField[][] boxes = new TextField[6][5];
     int counter = 0;
+    static Logik logik;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -37,7 +38,7 @@ public class GUI extends Application {
                 box.setMaxSize(60, 60);
 
                 box.setStyle(
-                        "-fx-font-size: 24px; " +
+                                "-fx-font-size: 24px; " +
                                 "-fx-font-weight: bold; " +
                                 "-fx-background-radius: 5px; " +
                                 "-fx-border-radius: 5px; " +
@@ -67,6 +68,13 @@ public class GUI extends Application {
         countButton.setStyle("-fx-font-size: 14px; -fx-padding: 8px 15px;");
 
         countButton.setOnAction(event -> {
+            char[] c = logik.prüfen(boxes[counter]);
+            if(c.length == 1){
+                counter --;
+            }else{
+                changeBoxColor(boxes[counter],c);
+            }
+            System.out.println(c);
             counter++;
         });
 
@@ -80,8 +88,24 @@ public class GUI extends Application {
         stage.show();
     }
 
+    public void changeBoxColor(TextField[] f,char[] c){
+        for (int i = 0; i < f.length; i++) {
+            if(c[i]=='g'){
+                f[i].setStyle(f[i].getStyle()+" -fx-background-color: #2E781F;");
+            }
+            if(c[i]=='y'){
+                f[i].setStyle(f[i].getStyle()+" -fx-background-color: #F4FF00;");
+            }
+            if(c[i]=='r'){
+                f[i].setStyle(f[i].getStyle()+" -fx-background-color: #962121;");
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
+        String word = "PETER"; //zufälliges wort muss ausgewählt werden
+        logik = new Logik(word);
         launch(args);
     }
 
