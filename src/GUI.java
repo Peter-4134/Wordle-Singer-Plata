@@ -2,15 +2,20 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
 
 public class GUI extends Application {
+
+    TextField[][] boxes = new TextField[6][5];
+    int counter = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,22 +44,35 @@ public class GUI extends Application {
                                 "-fx-border-color: #787c7e; " +
                                 "-fx-border-width: 2px;"
                 );
+                int finalI = i;
 
-                box.setTextFormatter(new TextFormatter<>(change -> {
-                    if (change.getControlNewText().length() <= 1) {
+                    box.setTextFormatter(new TextFormatter<>(change -> {
+                        int a = finalI;
+                    if (a==counter && change.getControlNewText().length() <= 1) {
                         change.setText(change.getText().toUpperCase());
                         return change;
                     }
                     return null;
                 }));
 
+
+
                 gridPane.add(box,j,i);
+
+                boxes[i][j] = box;
             }
         }
 
+        Button countButton = new Button("Prüfen");
+        countButton.setStyle("-fx-font-size: 14px; -fx-padding: 8px 15px;");
 
+        countButton.setOnAction(event -> {
+            counter++;
+        });
 
-        StackPane root = new StackPane(gridPane);
+        VBox root = new VBox(20);
+        root.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(gridPane, countButton);
         Scene scene = new Scene(root, 500, 500);
 
         stage.setTitle("Wordle");
