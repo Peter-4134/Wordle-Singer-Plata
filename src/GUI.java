@@ -1,10 +1,13 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -16,20 +19,61 @@ public class GUI extends Application {
         launch(args);
     }
 
-    TextField[][] boxes = new TextField[6][5]; // so kann man auf boxen zugreifen
+    TextField[][] boxes; // so kann man auf boxen zugreifen
     int counter = 0; // wie viele versuche es gab
     static Logik logik; // zur Überprüfung der Richtigkeit
 
     @Override
     public void start(Stage stage) throws Exception {
 
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setPadding(new Insets(15));
+        hBox.setSpacing(15);
+
+        Button easy = new Button("einfach");
+        Button medium = new Button("mittel");
+        Button hard = new Button("schwer");
+
+        easy.setOnAction(event -> {
+            game(1, stage);
+        });
+
+        medium.setOnAction(event -> {
+            game(0, stage);
+        });
+
+        hard.setOnAction(event -> {
+            game(-1, stage);
+        });
+
+        hBox.getChildren().addAll(easy,medium,hard);
+
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setPadding(new Insets(15));
+
+        TextField username = new TextField("Benutzername:");
+        vBox.getChildren().addAll(username,hBox);
+        Scene scene = new Scene(vBox, 250, 150);
+
+        stage.setTitle("start");
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void game(int difficulty, Stage stage){
+
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(5.0);
         gridPane.setVgap(5.0);
 
-        int rows = 6;
+        int rows = 6+difficulty;
         int cols = 5;
+
+        boxes  = new TextField[rows][5];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -80,6 +124,7 @@ public class GUI extends Application {
         stage.setTitle("Wordle");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public void changeBoxColor(TextField[] f,char[] c){
