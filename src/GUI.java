@@ -1,22 +1,24 @@
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
-
 public class GUI extends Application {
 
-    TextField[][] boxes = new TextField[6][5];
-    int counter = 0;
-    static Logik logik;
+    public static void main(String[] args) {
+        String word = "PETER"; //zufälliges wort muss ausgewählt werden
+        logik = new Logik(word);
+        launch(args);
+    }
+
+    TextField[][] boxes = new TextField[6][5]; // so kann man auf boxen zugreifen
+    int counter = 0; // wie viele versuche es gab
+    static Logik logik; // zur Überprüfung der Richtigkeit
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -37,14 +39,7 @@ public class GUI extends Application {
                 box.setMinSize(60, 60);
                 box.setMaxSize(60, 60);
 
-                box.setStyle(
-                                "-fx-font-size: 24px; " +
-                                "-fx-font-weight: bold; " +
-                                "-fx-background-radius: 5px; " +
-                                "-fx-border-radius: 5px; " +
-                                "-fx-border-color: #787c7e; " +
-                                "-fx-border-width: 2px;"
-                );
+                box.setStyle("-fx-font-size: 24px; " + "-fx-font-weight: bold; " + "-fx-background-radius: 5px; " + "-fx-border-radius: 5px; " + "-fx-border-color: #787c7e; " + "-fx-border-width: 2px;");
                 int finalI = i;
 
                     box.setTextFormatter(new TextFormatter<>(change -> {
@@ -74,7 +69,6 @@ public class GUI extends Application {
             }else{
                 changeBoxColor(boxes[counter],c);
             }
-            System.out.println(c);
             counter++;
         });
 
@@ -101,14 +95,5 @@ public class GUI extends Application {
             }
         }
     }
-
-
-    public static void main(String[] args) {
-        String word = "PETER"; //zufälliges wort muss ausgewählt werden
-        logik = new Logik(word);
-        launch(args);
-    }
-
-
 }
 
