@@ -46,15 +46,15 @@ public class GUI extends Application {
         Scene scene = new Scene(vBox, 250, 150);
 
         easy.setOnAction(event -> {
-            if(manageUser(String.valueOf(username))) game(1, stage);
+            if(manageUser(username.getText())) game(1, stage);
         });
 
         medium.setOnAction(event -> {
-            if(manageUser(String.valueOf(username))) game(0, stage);
+            if(manageUser(username.getText())) game(0, stage);
         });
 
         hard.setOnAction(event -> {
-            if(manageUser(String.valueOf(username))) game(-1, stage);
+            if(manageUser(username.getText())) game(-1, stage);
         });
 
 

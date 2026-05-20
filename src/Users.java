@@ -15,17 +15,20 @@ public class Users {
             for(String s : input){
                 s.trim();
                 users.add(new User(s));
-                if(s == name){
+                if(s.equals(name)){
+                    System.out.println("hit");
                     erg = users.getLast();
                 }
             }
         } catch (IOException e) {
         }
+        System.out.println(erg);
         return erg;
     }
 
     public void add(User user){
         users.add(user);
+        System.out.println(users);
         List<String> out = new ArrayList<>();
         for(User u : users){
             out.add(u.getUsername());
