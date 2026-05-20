@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -21,7 +20,8 @@ public class GUI extends Application {
 
     TextField[][] boxes; // so kann man auf boxen zugreifen
     int counter = 0; // wie viele versuche es gab
-    static Logik logik; // zur Überprüfung der Richtigkeit
+    static Logik logik;// zur Überprüfung der Richtigkeit
+    User user = new User("null");
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -35,18 +35,6 @@ public class GUI extends Application {
         Button medium = new Button("mittel");
         Button hard = new Button("schwer");
 
-        easy.setOnAction(event -> {
-            game(1, stage);
-        });
-
-        medium.setOnAction(event -> {
-            game(0, stage);
-        });
-
-        hard.setOnAction(event -> {
-            game(-1, stage);
-        });
-
         hBox.getChildren().addAll(easy,medium,hard);
 
         VBox vBox = new VBox();
@@ -56,6 +44,19 @@ public class GUI extends Application {
         TextField username = new TextField("Benutzername:");
         vBox.getChildren().addAll(username,hBox);
         Scene scene = new Scene(vBox, 250, 150);
+
+        easy.setOnAction(event -> {
+            if(manageUser(String.valueOf(username))) game(1, stage);
+        });
+
+        medium.setOnAction(event -> {
+            if(manageUser(String.valueOf(username))) game(0, stage);
+        });
+
+        hard.setOnAction(event -> {
+            if(manageUser(String.valueOf(username))) game(-1, stage);
+        });
+
 
         stage.setTitle("start");
         stage.setScene(scene);
@@ -125,6 +126,14 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public boolean manageUser(String s){
+        if(user.checkUser(s)){
+            user = user.selectUser(s);
+            return true;
+        }
+        return false;
     }
 
     public void changeBoxColor(TextField[] f,char[] c){
