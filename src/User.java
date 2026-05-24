@@ -5,16 +5,16 @@ public class User {
         this.username = username;
     }
 
-    public boolean checkUser(String name){
-        if(name.trim() != null && name != "Benutzername:"){
+    public boolean checkUser(String name) {
+        if (name.trim() != null && name != "Benutzername:") {
             return true;
         }
         return false;
     }
 
-    public User selectUser(String name){
+    public User selectUser(String name) {
         Users users = new Users();
-        if(users.getUser(name) != null){
+        if (users.getUser(name) != null) {
             return users.getUser(name);
         }
         User erg = new User(name);

@@ -35,26 +35,26 @@ public class GUI extends Application {
         Button medium = new Button("mittel");
         Button hard = new Button("schwer");
 
-        hBox.getChildren().addAll(easy,medium,hard);
+        hBox.getChildren().addAll(easy, medium, hard);
 
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(15));
 
         TextField username = new TextField("Benutzername:");
-        vBox.getChildren().addAll(username,hBox);
+        vBox.getChildren().addAll(username, hBox);
         Scene scene = new Scene(vBox, 250, 150);
 
         easy.setOnAction(event -> {
-            if(manageUser(username.getText())) game(1, stage);
+            if (manageUser(username.getText())) game(1, stage);
         });
 
         medium.setOnAction(event -> {
-            if(manageUser(username.getText())) game(0, stage);
+            if (manageUser(username.getText())) game(0, stage);
         });
 
         hard.setOnAction(event -> {
-            if(manageUser(username.getText())) game(-1, stage);
+            if (manageUser(username.getText())) game(-1, stage);
         });
 
 
@@ -64,32 +64,32 @@ public class GUI extends Application {
 
     }
 
-    public void game(int difficulty, Stage stage){
+    public void game(int difficulty, Stage stage) {
 
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(5.0);
         gridPane.setVgap(5.0);
 
-        int rows = 6+difficulty;
+        int rows = 6 + difficulty;
         int cols = 5;
 
-        boxes  = new TextField[rows][5];
+        boxes = new TextField[rows][5];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 TextField box = new TextField();
 
-                box.setPrefSize(60,60);
+                box.setPrefSize(60, 60);
                 box.setMinSize(60, 60);
                 box.setMaxSize(60, 60);
 
                 box.setStyle("-fx-font-size: 24px; " + "-fx-font-weight: bold; " + "-fx-background-radius: 5px; " + "-fx-border-radius: 5px; " + "-fx-border-color: #787c7e; " + "-fx-border-width: 2px;");
                 int finalI = i;
 
-                    box.setTextFormatter(new TextFormatter<>(change -> {
-                        int a = finalI;
-                    if (a==counter && change.getControlNewText().length() <= 1) {
+                box.setTextFormatter(new TextFormatter<>(change -> {
+                    int a = finalI;
+                    if (a == counter && change.getControlNewText().length() <= 1) {
                         change.setText(change.getText().toUpperCase());
                         return change;
                     }
@@ -97,8 +97,7 @@ public class GUI extends Application {
                 }));
 
 
-
-                gridPane.add(box,j,i);
+                gridPane.add(box, j, i);
 
                 boxes[i][j] = box;
             }
@@ -109,10 +108,10 @@ public class GUI extends Application {
 
         countButton.setOnAction(event -> {
             char[] c = logik.prüfen(boxes[counter]);
-            if(c.length == 1){
-                counter --;
-            }else{
-                changeBoxColor(boxes[counter],c);
+            if (c.length == 1) {
+                counter--;
+            } else {
+                changeBoxColor(boxes[counter], c);
             }
             counter++;
         });
@@ -128,24 +127,24 @@ public class GUI extends Application {
 
     }
 
-    public boolean manageUser(String s){
-        if(user.checkUser(s)){
+    public boolean manageUser(String s) {
+        if (user.checkUser(s)) {
             user = user.selectUser(s);
             return true;
         }
         return false;
     }
 
-    public void changeBoxColor(TextField[] f,char[] c){
+    public void changeBoxColor(TextField[] f, char[] c) {
         for (int i = 0; i < f.length; i++) {
-            if(c[i]=='g'){
-                f[i].setStyle(f[i].getStyle()+" -fx-background-color: #2E781F;");
+            if (c[i] == 'g') {
+                f[i].setStyle(f[i].getStyle() + " -fx-background-color: #2E781F;");
             }
-            if(c[i]=='y'){
-                f[i].setStyle(f[i].getStyle()+" -fx-background-color: #F4FF00;");
+            if (c[i] == 'y') {
+                f[i].setStyle(f[i].getStyle() + " -fx-background-color: #F4FF00;");
             }
-            if(c[i]=='r'){
-                f[i].setStyle(f[i].getStyle()+" -fx-background-color: #962121;");
+            if (c[i] == 'r') {
+                f[i].setStyle(f[i].getStyle() + " -fx-background-color: #962121;");
             }
         }
     }
