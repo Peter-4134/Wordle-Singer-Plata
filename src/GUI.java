@@ -22,7 +22,7 @@ public class GUI extends Application {
     TextField[][] boxes; // so kann man auf boxen zugreifen
     int counter = 0; // wie viele versuche es gab
     static Logik logik;// zur Überprüfung der Richtigkeit
-    User user = new User("null");
+    User user = new User(null);
 
     @Override
     public void start(Stage stage) throws Exception {

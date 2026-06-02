@@ -16,7 +16,6 @@ public class Users {
                 s.trim();
                 users.add(new User(s));
                 if (s.equals(name)) {
-                    System.out.println("hit");
                     erg = users.getLast();
                 }
             }

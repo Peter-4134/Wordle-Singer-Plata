@@ -6,10 +6,10 @@ public class User {
     }
 
     public boolean checkUser(String name) {
-        if (name.trim() != null && name != "Benutzername:") {
-            return true;
+        if (name.trim().equals("") || name.equals("Benutzername:")) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public User selectUser(String name) {
