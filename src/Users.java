@@ -35,6 +35,7 @@ public class Users {
         try {
             Files.write(Path.of("src/Userlist.txt"), out);
         } catch (IOException e) {
+            System.out.println("Fehler beim Schreiben der Datei " + e.getMessage());
         }
     }
 }

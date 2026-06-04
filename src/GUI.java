@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
-    //--module-path "libs/javafx-sdk-25.0.1/lib" --add-modules javafx.controls,javafx.fxml
 
     public static void main(String[] args) {
         String word = "PETER"; //zufälliges wort muss ausgewählt werden
