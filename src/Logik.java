@@ -3,6 +3,11 @@ import javafx.scene.control.TextField;
 public class Logik {
     String word;
 
+    /**
+     * Überprüft die richtigkeit eines wortes
+     * @param word: W
+     */
+
     public Logik(String word) {
         this.word = word;
     }
