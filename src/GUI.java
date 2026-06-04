@@ -1,8 +1,10 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
@@ -20,9 +22,12 @@ public class GUI extends Application {
 
     TextField[][] boxes; // so kann man auf boxen zugreifen
     int counter = 0; // wie viele versuche es gab
-    static Logik logik;// zur Überprüfung der Richtigkeit
-    User user = new User(null);
+    static Logik logik; // zur Überprüfung der Richtigkeit
+    User user = new User(null); //Der User der Spielt, seine Attribute werden verändert
 
+    /**
+     * Öffnet das Fenster, um den Benutzer un den Schwierigkeitsgrad auszuwählen.
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -34,6 +39,7 @@ public class GUI extends Application {
         Button easy = new Button("einfach");
         Button medium = new Button("mittel");
         Button hard = new Button("schwer");
+        Platform.runLater(() -> hBox.requestFocus()); //damit das Textfeld nicht gleich ausgewählt wird und man den Prompttext nicht sieht
 
         hBox.getChildren().addAll(easy, medium, hard);
 
@@ -41,7 +47,9 @@ public class GUI extends Application {
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(15));
 
-        TextField username = new TextField("Benutzername:");
+        TextField username = new TextField();
+        username.setPromptText("Benutzername:");
+
         vBox.getChildren().addAll(username, hBox);
         Scene scene = new Scene(vBox, 250, 150);
 
@@ -63,6 +71,11 @@ public class GUI extends Application {
         stage.show();
 
     }
+
+    /**
+     * Das Fenster in dem das Spiel stattfindet
+     * @param difficulty: Schwierigkeitsgrad, verändert Rateversuche
+     */
 
     public void game(int difficulty, Stage stage) {
 
@@ -119,13 +132,19 @@ public class GUI extends Application {
         VBox root = new VBox(20);
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(gridPane, countButton);
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(root, 500, 500 + 60 * difficulty);
 
         stage.setTitle("Wordle");
         stage.setScene(scene);
         stage.show();
 
     }
+
+    /**
+     * checkt, ob die Eingabe des Benutzers akzeptabel ist und setzt den user für die Runde
+     * @param s: Eingabe des Benutzernamens
+     * @return: ober dei Eingabe aktzeptabel ist
+     */
 
     public boolean manageUser(String s) {
         if (user.checkUser(s)) {
@@ -134,6 +153,12 @@ public class GUI extends Application {
         }
         return false;
     }
+
+    /**
+     * Ändert die Farbe einer Eingabebox
+     * @param f: Box die geändert werden soll
+     * @param c: farbe auf die sie geändert werden soll
+     */
 
     public void changeBoxColor(TextField[] f, char[] c) {
         for (int i = 0; i < f.length; i++) {
