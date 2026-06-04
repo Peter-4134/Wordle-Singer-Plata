@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class GUI extends Application {
 
     public static void main(String[] args) {
-        String word = "PETER"; //zufälliges wort muss ausgewählt werden
+        String word = WordPicker.getRandomWord();
         logik = new Logik(word);
         launch(args);
     }
