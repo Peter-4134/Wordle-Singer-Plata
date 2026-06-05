@@ -23,8 +23,9 @@ public class Logik {
         char[] test = word.toUpperCase().toCharArray();
         char[] erg = new char[input.length];
 
+        // Leere Felder abfangen
         for (TextField f : input) {
-            if (f.getText() == null) return new char[1];
+            if (f.getText() == null || f.getText().isEmpty()) return new char[1];
         }
 
         for (int i = 0; i < test.length; i++) {

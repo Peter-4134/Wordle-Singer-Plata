@@ -155,6 +155,9 @@ public class GUI extends Application {
         root.getChildren().addAll(gridPane, countButton);
         Scene scene = new Scene(root, 500, 500 + 60 * difficulty);
 
+        root.setStyle("-fx-background-color: #d1d1d1;");
+
+
         stage.setTitle("Wordle");
         stage.setScene(scene);
         stage.show();
@@ -258,7 +261,7 @@ public class GUI extends Application {
                 f[i].setStyle(f[i].getStyle() + " -fx-background-color: #2E781F;");
             }
             if (c[i] == 'y') {
-                f[i].setStyle(f[i].getStyle() + " -fx-background-color: #F4FF00;");
+                f[i].setStyle(f[i].getStyle() + " -fx-background-color: #B59F3B;");
             }
             if (c[i] == 'r') {
                 f[i].setStyle(f[i].getStyle() + " -fx-background-color: #962121;");
