@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
@@ -24,6 +25,7 @@ public class GUI extends Application {
 
     TextField[][] boxes; // so kann man auf boxen zugreifen
     int counter = 0; // wie viele versuche es gab
+    int currentDifficulty = 0;
     static Logik logik; // zur Überprüfung der Richtigkeit
     User user = new User(null); //Der User der Spielt, seine Attribute werden verändert
 
@@ -81,6 +83,7 @@ public class GUI extends Application {
      */
 
     public void game(int difficulty, Stage stage) {
+        this.currentDifficulty = difficulty;
 
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -134,8 +137,16 @@ public class GUI extends Application {
             } else {
                 changeBoxColor(boxes[counter], c);
             }
+
+            if (isWin(c)) {
+                showEndDialog("Gewonnen! Du hast " + counter + " Versuche gebraucht.", stage);
+            } else if (counter == rows - 1) {
+                showEndDialog("Verloren! Das Wort war: " + logik.word, stage);
+            }
+
             counter++;
         });
+
 
         VBox root = new VBox(20);
         root.setAlignment(Pos.CENTER);
@@ -147,6 +158,48 @@ public class GUI extends Application {
         stage.show();
 
     }
+
+
+    private boolean isWin(char[] c) {
+        for (char ch : c) {
+            if (ch != 'g') return false;
+        }
+        return true;
+    }
+
+    /**
+     * Zeigt dem Benutzer einen Dialog zum Spielende an, der eine Nachricht sowie die Möglichkeit enthält,
+     * das Spiel neu zu starten.
+     *
+     * @param message Die im Dialog angezeigte Nachricht. Wird normalerweise verwendet,
+     *                um das Spielergebnis mitzuteilen.
+     * @param stage   Das Hauptfenster der Anwendung, das als Besitzer des Dialogs dient.
+     */
+    private void showEndDialog(String message, Stage stage) {
+        Stage dialog = new Stage();
+        dialog.initOwner(stage);
+
+        Label label = new Label(message);
+        label.setStyle("-fx-font-size: 18px;");
+
+        Button restart = new Button("Nochmal spielen");
+        restart.setOnAction(e -> {
+            dialog.close();
+            counter = 0; // Counter zurücksetzen
+            String newWord = WordPicker.getRandomWord();
+            logik = new Logik(newWord);
+            game(currentDifficulty, stage); // neues Spiel starten
+        });
+
+        VBox vBox = new VBox(15, label, restart);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setPadding(new Insets(20));
+
+        dialog.setScene(new Scene(vBox, 300, 150));
+        dialog.setTitle("Spielende");
+        dialog.show();
+    }
+
 
     /**
      * checkt, ob die Eingabe des Benutzers akzeptabel ist und setzt den user für die Runde
