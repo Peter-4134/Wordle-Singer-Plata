@@ -13,9 +13,9 @@ public class Logik {
     }
 
     /**
-     *
-     * @param input
-     * @return
+     * überprüft ein TextField array
+     * @param input ein Textfield aus 5 boxencdas überprüft werden soll
+     * @return ein array mit 5 stellen, jeweils grün(g), gelb(y) oder rot(r)
      */
 
     public char[] prüfen(TextField[] input) {
