@@ -85,6 +85,8 @@ public class GUI extends Application {
     public void game(int difficulty, Stage stage) {
         this.currentDifficulty = difficulty;
 
+
+
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(5.0);
@@ -101,7 +103,14 @@ public class GUI extends Application {
 
                 box.setPrefSize(60, 60);
 
-                box.setStyle("-fx-font-size: 24px; " + "-fx-font-weight: bold; " + "-fx-background-radius: 5px; " + "-fx-border-radius: 5px; " + "-fx-border-color: #787c7e; " + "-fx-border-width: 2px;");
+                box.setStyle("-fx-font-size: 24px; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-background-radius: 5px; " +
+                        "-fx-border-radius: 5px; " +
+                        "-fx-border-color: #565758; " +
+                        "-fx-border-width: 2px; " +
+                        "-fx-text-fill: white; ");
+
                 int finalI = i;
 
                 box.setTextFormatter(new TextFormatter<>(change -> {
@@ -124,6 +133,8 @@ public class GUI extends Application {
                 gridPane.add(box, j, i);
 
                 boxes[i][j] = box;
+
+
             }
         }
 
@@ -161,6 +172,13 @@ public class GUI extends Application {
         stage.setTitle("Wordle");
         stage.setScene(scene);
         stage.show();
+
+        //Um mit Enter Prüfen zu können
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                countButton.fire();
+            }
+        });
 
     }
 
