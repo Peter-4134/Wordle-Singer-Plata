@@ -85,8 +85,6 @@ public class GUI extends Application {
     public void game(int difficulty, Stage stage) {
         this.currentDifficulty = difficulty;
 
-
-
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(5.0);
