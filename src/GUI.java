@@ -27,7 +27,7 @@ public class GUI extends Application {
     int counter = 0; // wie viele versuche es gab
     int currentDifficulty = 0;
     static Logik logik; // zur Überprüfung der Richtigkeit
-    User user = new User(null,0,0,0); //Der User der Spielt, seine Attribute werden verändert
+    User user = new User(null, 0, 0, 0); //Der User der Spielt, seine Attribute werden verändert
 
     /**
      * Öffnet das Fenster, um den Benutzer und den Schwierigkeitsgrad auszuwählen.
@@ -140,10 +140,10 @@ public class GUI extends Application {
 
             if (isWin(c)) {
                 countButton.setDisable(true); //Prüfen Button deaktivieren
-                showEndDialog("Gewonnen! Du hast " + (counter +1) + " Versuch(e) gebraucht.", stage);
+                showEndDialog("Gewonnen! Du hast " + (counter + 1) + " Versuch(e) gebraucht.", stage, true);
             } else if (counter == rows - 1) {
                 countButton.setDisable(true); //Prüfen Button deaktivieren
-                showEndDialog("Verloren! Das Wort war: " + logik.word, stage);
+                showEndDialog("Verloren! Das Wort war: " + logik.word, stage, false);
             }
 
             counter++;
@@ -178,7 +178,7 @@ public class GUI extends Application {
      * @param stage   Das Hauptfenster der Anwendung, das als Besitzer des Dialogs dient.
      */
 
-    private void showEndDialog(String message, Stage stage) {
+    private void showEndDialog(String message, Stage stage, boolean gewonnen) {
         Stage dialog = new Stage();
         dialog.initOwner(stage);
 
@@ -202,11 +202,33 @@ public class GUI extends Application {
         dialog.setTitle("Spielende");
         dialog.show();
 
-        Label stats = new Label("Siege: E=" + user.getEasyWins()
-                + " M=" + user.getMediumWins()
-                + " S=" + user.getHardWins());
-    }
+        if (gewonnen == true) {
+            if (currentDifficulty == 1) {
+                user.addEasyWins();
+            } else if (currentDifficulty == 0) {
+                user.addMediumWins();
+            } else if (currentDifficulty == -1) {
+                user.addHardWins();
+            }
 
+            Users users = new Users();
+            users.update(user);
+
+            Label stats = new Label(
+                    user.getUsername() + " – Siege:  " +
+                            "Einfach: " + user.getEasyWins() + "  " +
+                            "Mittel: " + user.getMediumWins() + "  " +
+                            "Schwer: " + user.getHardWins()
+            );
+            stats.setStyle("-fx-font-size: 13px;");
+
+            VBox dialogBox = new VBox(15, label, stats, restart); // statt vBox → dialogBox
+            dialogBox.setAlignment(Pos.CENTER);
+            dialogBox.setPadding(new Insets(20));
+
+            dialog.setScene(new Scene(dialogBox, 400, 150));
+        }
+    }
 
     /**
      * checkt, ob die Eingabe des Benutzers akzeptabel ist und setzt den user für die Runde
