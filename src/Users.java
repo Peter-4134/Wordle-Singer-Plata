@@ -4,8 +4,18 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * speichert alle user in einer Liste
+ */
+
 public class Users {
     List<User> users = new ArrayList<>();
+
+    /**
+     * liefert einen User und schaut ob dieser user schon besteht, sonst wird null geliefert
+     * @param name name des zu liefernden users
+     * @return den user
+     */
 
     public User getUser(String name) {
         User erg = null;
@@ -22,6 +32,11 @@ public class Users {
         }
         return erg;
     }
+
+    /**
+     * fügt einen user zur userliste hinzu und speichert diese
+     * @param user hinzuzufügender user
+     */
 
     public void add(User user) {
         users.add(user);
