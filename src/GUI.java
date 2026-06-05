@@ -76,6 +76,7 @@ public class GUI extends Application {
 
     /**
      * Das Fenster in dem das Spiel stattfindet
+     *
      * @param difficulty: Schwierigkeitsgrad, verändert Rateversuche
      */
 
@@ -109,6 +110,14 @@ public class GUI extends Application {
                     return null;
                 }));
 
+                KeyEvent tab = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.TAB, false, false, false, false);
+
+                box.textProperty().addListener(c -> {
+                    if (box.getText().length() == 1) {
+                        box.fireEvent(tab);
+                    }
+                });
+
                 gridPane.add(box, j, i);
 
                 boxes[i][j] = box;
@@ -141,6 +150,7 @@ public class GUI extends Application {
 
     /**
      * checkt, ob die Eingabe des Benutzers akzeptabel ist und setzt den user für die Runde
+     *
      * @param s: Eingabe des Benutzernamens
      * @return: ober die Eingabe aktzeptabel ist
      */
@@ -155,6 +165,7 @@ public class GUI extends Application {
 
     /**
      * Ändert die Farbe einer Eingabebox
+     *
      * @param f: Box die geändert werden soll
      * @param c: farbe auf die sie geändert werden soll
      */
