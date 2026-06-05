@@ -3,7 +3,10 @@
  */
 
 public class User {
-    String username;
+    private String username;
+    private int easyWins;
+    private int mediumWins;
+    private int hardWins;
 
     public User(String username) {
         this.username = username;
@@ -45,8 +48,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                '}';
+        return username + ";" + easyWins + ";" + mediumWins + ";" + hardWins;
     }
 }
