@@ -8,8 +8,11 @@ public class User {
     private int mediumWins;
     private int hardWins;
 
-    public User(String username) {
+    public User(String username, int easyWins, int mediumWins, int hardWins) {
         this.username = username;
+        this.easyWins = easyWins;
+        this.mediumWins = mediumWins;
+        this.hardWins = hardWins;
     }
 
     /**
@@ -37,7 +40,7 @@ public class User {
         if (users.getUser(name) != null) {
             return users.getUser(name);
         }
-        User erg = new User(name);
+        User erg = new User(name, easyWins, mediumWins, hardWins);
         users.add(erg);
         return erg;
     }
