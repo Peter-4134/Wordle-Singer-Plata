@@ -108,8 +108,7 @@ public class GUI extends Application {
                         "-fx-background-radius: 5px; " +
                         "-fx-border-radius: 5px; " +
                         "-fx-border-color: #565758; " +
-                        "-fx-border-width: 2px; " +
-                        "-fx-text-fill: white; ");
+                        "-fx-border-width: 2px; ");
 
                 int finalI = i;
 
