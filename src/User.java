@@ -17,6 +17,7 @@ public class User {
 
     /**
      * überprüft, ob der name aktzeptabel für einen user ist
+     *
      * @param name ist zu überprüfen
      * @return ob er aktzeptiert wird
      */
@@ -31,6 +32,7 @@ public class User {
     /**
      * Bekommt einen String und liefert entweder einen neuen User,
      * oder einen Bestehenden user
+     *
      * @param name username des zu liefernden users
      * @return einen user
      */
@@ -45,8 +47,32 @@ public class User {
         return erg;
     }
 
+    public void addEasyWins() {
+        easyWins++;
+    }
+
+    public void addMediumWins() {
+        mediumWins++;
+    }
+
+    public void addHardWins() {
+        hardWins++;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public int getEasyWins() {
+        return easyWins;
+    }
+
+    public int getMediumWins() {
+        return mediumWins;
+    }
+
+    public int getHardWins() {
+        return hardWins;
     }
 
     @Override

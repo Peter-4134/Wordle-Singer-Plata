@@ -139,8 +139,10 @@ public class GUI extends Application {
             }
 
             if (isWin(c)) {
-                showEndDialog("Gewonnen! Du hast " + (counter +1) + " Versuche gebraucht.", stage);
+                countButton.setDisable(true); //Prüfen Button deaktivieren
+                showEndDialog("Gewonnen! Du hast " + (counter +1) + " Versuch(e) gebraucht.", stage);
             } else if (counter == rows - 1) {
+                countButton.setDisable(true); //Prüfen Button deaktivieren
                 showEndDialog("Verloren! Das Wort war: " + logik.word, stage);
             }
 
@@ -175,6 +177,7 @@ public class GUI extends Application {
      *                um das Spielergebnis mitzuteilen.
      * @param stage   Das Hauptfenster der Anwendung, das als Besitzer des Dialogs dient.
      */
+
     private void showEndDialog(String message, Stage stage) {
         Stage dialog = new Stage();
         dialog.initOwner(stage);
@@ -195,9 +198,13 @@ public class GUI extends Application {
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(20));
 
-        dialog.setScene(new Scene(vBox, 300, 150));
+        dialog.setScene(new Scene(vBox, 400, 150));
         dialog.setTitle("Spielende");
         dialog.show();
+
+        Label stats = new Label("Siege: E=" + user.getEasyWins()
+                + " M=" + user.getMediumWins()
+                + " S=" + user.getHardWins());
     }
 
 
