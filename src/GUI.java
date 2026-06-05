@@ -4,7 +4,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
@@ -88,22 +87,20 @@ public class GUI extends Application {
         int rows = 6 + difficulty;
         int cols = 5;
 
-        boxes = new TextField[rows][5];
+        TextField[][] boxes = new TextField[rows][cols];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 TextField box = new TextField();
 
                 box.setPrefSize(60, 60);
-                box.setMinSize(60, 60);
-                box.setMaxSize(60, 60);
 
                 box.setStyle("-fx-font-size: 24px; " + "-fx-font-weight: bold; " + "-fx-background-radius: 5px; " + "-fx-border-radius: 5px; " + "-fx-border-color: #787c7e; " + "-fx-border-width: 2px;");
                 int finalI = i;
 
                 box.setTextFormatter(new TextFormatter<>(change -> {
                     int a = finalI;
-                    if (a == counter && change.getControlNewText().length() <= 1) {
+                    if (a == counter && change.getControlNewText().length() <= 1 && change.getText().chars().allMatch(c -> Character.isLetter(c))) {
                         change.setText(change.getText().toUpperCase());
                         return change;
                     }

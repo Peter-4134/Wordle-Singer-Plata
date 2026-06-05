@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -21,13 +20,11 @@ public class Users {
             }
         } catch (IOException e) {
         }
-        System.out.println(erg);
         return erg;
     }
 
     public void add(User user) {
         users.add(user);
-        System.out.println(users);
         List<String> out = new ArrayList<>();
         for (User u : users) {
             out.add(u.getUsername());

@@ -12,6 +12,12 @@ public class Logik {
         this.word = word;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
+
     public char[] prüfen(TextField[] input) {
 
         char[] test = word.toUpperCase().toCharArray();
