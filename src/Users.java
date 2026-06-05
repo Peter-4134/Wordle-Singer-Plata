@@ -23,7 +23,7 @@ public class Users {
             List<String> input = Files.readAllLines(Path.of("src/Userlist.txt"));
             for (String s : input) {
                 String[] sa = s.split(";");
-                if(sa[0].contains(";")) users.add(new User(sa[0],Integer.parseInt(sa[1]),Integer.parseInt(sa[2]),Integer.parseInt(sa[3])));
+                if(s.contains(";")) users.add(new User(sa[0],Integer.parseInt(sa[1]),Integer.parseInt(sa[2]),Integer.parseInt(sa[3])));
                 if (sa[0].equals(name)) {
                     erg = users.getLast();
                 }
