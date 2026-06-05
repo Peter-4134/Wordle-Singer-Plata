@@ -138,7 +138,14 @@ public class GUI extends Application {
         }
 
         Button countButton = new Button("Prüfen");
-        countButton.setStyle("-fx-font-size: 14px; -fx-padding: 8px 15px;");
+        countButton.setStyle(
+                "-fx-font-size: 14px; " +
+                        "-fx-padding: 8px 15px; " +
+                        "-fx-background-color: #538d4e; " + // grün, passend zum Wordle-Theme
+                        "-fx-text-fill: white; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-background-radius: 5px;"
+        );
 
         countButton.setOnAction(event -> {
             char[] c = logik.prüfen(boxes[counter]);
