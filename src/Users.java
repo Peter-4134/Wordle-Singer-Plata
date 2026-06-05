@@ -22,14 +22,15 @@ public class Users {
         try {
             List<String> input = Files.readAllLines(Path.of("src/Userlist.txt"));
             for (String s : input) {
-                s.trim();
-                users.add(new User(s));
-                if (s.equals(name)) {
+                String[] sa = s.split(";");
+                if(sa[0].contains(";")) users.add(new User(sa[0],Integer.parseInt(sa[1]),Integer.parseInt(sa[2]),Integer.parseInt(sa[3])));
+                if (sa[0].equals(name)) {
                     erg = users.getLast();
                 }
             }
         } catch (IOException e) {
         }
+        System.out.println(users);
         return erg;
     }
 
@@ -42,7 +43,7 @@ public class Users {
         users.add(user);
         List<String> out = new ArrayList<>();
         for (User u : users) {
-            out.add(u.getUsername());
+            out.add(u.toString());
         }
         try {
             Files.write(Path.of("src/Userlist.txt"), out);

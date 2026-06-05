@@ -27,7 +27,7 @@ public class GUI extends Application {
     int counter = 0; // wie viele versuche es gab
     int currentDifficulty = 0;
     static Logik logik; // zur Überprüfung der Richtigkeit
-    User user = new User(null); //Der User der Spielt, seine Attribute werden verändert
+    User user = new User(null,0,0,0); //Der User der Spielt, seine Attribute werden verändert
 
     /**
      * Öffnet das Fenster, um den Benutzer und den Schwierigkeitsgrad auszuwählen.
@@ -139,7 +139,7 @@ public class GUI extends Application {
             }
 
             if (isWin(c)) {
-                showEndDialog("Gewonnen! Du hast " + counter + " Versuche gebraucht.", stage);
+                showEndDialog("Gewonnen! Du hast " + (counter +1) + " Versuche gebraucht.", stage);
             } else if (counter == rows - 1) {
                 showEndDialog("Verloren! Das Wort war: " + logik.word, stage);
             }
