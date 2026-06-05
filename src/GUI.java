@@ -16,6 +16,7 @@ public class GUI extends Application {
 
     public static void main(String[] args) {
         String word = WordPicker.getRandomWord();
+        System.out.println(word);
         logik = new Logik(word);
         launch(args);
     }
@@ -26,7 +27,7 @@ public class GUI extends Application {
     User user = new User(null); //Der User der Spielt, seine Attribute werden verändert
 
     /**
-     * Öffnet das Fenster, um den Benutzer un den Schwierigkeitsgrad auszuwählen.
+     * Öffnet das Fenster, um den Benutzer und den Schwierigkeitsgrad auszuwählen.
      */
     @Override
     public void start(Stage stage) throws Exception {
@@ -143,7 +144,7 @@ public class GUI extends Application {
     /**
      * checkt, ob die Eingabe des Benutzers akzeptabel ist und setzt den user für die Runde
      * @param s: Eingabe des Benutzernamens
-     * @return: ober dei Eingabe aktzeptabel ist
+     * @return: ober die Eingabe aktzeptabel ist
      */
 
     public boolean manageUser(String s) {
