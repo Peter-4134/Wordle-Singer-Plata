@@ -222,11 +222,11 @@ public class GUI extends Application {
             );
             stats.setStyle("-fx-font-size: 13px;");
 
-            VBox dialogBox = new VBox(15, label, stats, restart); // statt vBox → dialogBox
+            VBox dialogBox = new VBox(15, label, stats, restart);
             dialogBox.setAlignment(Pos.CENTER);
             dialogBox.setPadding(new Insets(20));
 
-            dialog.setScene(new Scene(dialogBox, 400, 150));
+            dialog.setScene(new Scene(dialogBox, 400, 180));
         }
     }
 

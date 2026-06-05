@@ -64,7 +64,7 @@ public class Users {
      * @param updatedUser Das Benutzerobjekt mit den aktualisierten Informationen.
      */
     public void update(User updatedUser) {
-        getUser(updatedUser.getUsername()); // lädt die aktuelle Liste
+        getUser(updatedUser.getUsername()); // aktuelle Liste laden
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getUsername().equals(updatedUser.getUsername())) {
                 users.set(i, updatedUser);
