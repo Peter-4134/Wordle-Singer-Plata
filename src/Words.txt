@@ -42,7 +42,6 @@ Radio
 Roman
 Seite
 Brief
-Hefte
 Tinte
 Feder
 Linie
