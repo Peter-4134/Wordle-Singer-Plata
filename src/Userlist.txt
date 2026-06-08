@@ -1,7 +1,3 @@
-Jan;1;2;5
-Reinhold;0;0;1
-jan;2;0;2
-peter;1;2;0
+Jan;2;3;100
 Paulina;4;4;3
-petrus;0;1;0
-s;0;1;0
+Amelie;0;1;0
