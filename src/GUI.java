@@ -83,7 +83,7 @@ public class GUI extends Application {
     }
 
     /**
-     * Beschreibung des Spieles
+     * Beschreibung des Spieles Wordle
      * @param stage
      */
 
