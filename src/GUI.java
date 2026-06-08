@@ -50,11 +50,17 @@ public class GUI extends Application {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(15));
+        vBox.setSpacing(15);
+
+        Button info = new Button("Beschreibung");
+        info.setOnAction(event -> {
+            infoWindow(stage);
+        });
 
         TextField username = new TextField();
         username.setPromptText("Benutzername:");
 
-        vBox.getChildren().addAll(username, hBox);
+        vBox.getChildren().addAll(info, username, hBox);
         Scene scene = new Scene(vBox, 250, 150);
 
         easy.setOnAction(event -> {
@@ -74,6 +80,47 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    /**
+     * Beschreibung des Spieles
+     * @param stage
+     */
+
+    public void infoWindow(Stage stage) {
+        Label description = new Label(
+                "Wordle von Jan Plata und Peter Singer:\n\n" +
+                "Versuche das geheime 5-Buchstaben-Wort zu erraten!\n\n" +
+                        "Grün  – Buchstabe ist richtig und an der richtigen Stelle\n" +
+                        "Gelb  – Buchstabe kommt vor, aber an der falschen Stelle\n" +
+                        "Rot   – Buchstabe kommt im Wort nicht vor\n\n" +
+                        "Schwierigkeitsgrade:\n" +
+                        "  • Einfach – 7 Versuche\n" +
+                        "  • Mittel  – 6 Versuche\n" +
+                        "  • Schwer  – 5 Versuche\n\n" +
+                        "Gib deinen Benutzernamen ein und wähle\n" +
+                        "einen Schwierigkeitsgrad um zu starten!"
+        );
+        description.setStyle("-fx-font-size: 13px;");
+
+        Button back = new Button("zurück");
+        back.setOnAction(event -> {
+            try {
+                start(stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        VBox vBox = new VBox();
+        vBox.setPadding(new Insets(20));
+        vBox.setAlignment(Pos.CENTER);
+        vBox.getChildren().addAll(description, back);
+
+        Scene scene = new Scene(vBox);
+        stage.setTitle("Informationen");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
@@ -252,8 +299,12 @@ public class GUI extends Application {
                             "Schwer: " + user.getHardWins()
             );
             stats.setStyle("-fx-font-size: 13px;");
+            Button endGame = new Button("Beenden");
+            endGame.setOnAction(event -> {
+                stage.close();
+            });
 
-            VBox dialogBox = new VBox(15, label, stats, restart);
+            VBox dialogBox = new VBox(15, label, stats, restart,endGame);
             dialogBox.setAlignment(Pos.CENTER);
             dialogBox.setPadding(new Insets(20));
 

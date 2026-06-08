@@ -1,4 +1,7 @@
 Jan;1;2;5
 Reinhold;0;0;1
-jan;0;0;2
+jan;2;0;2
+peter;1;2;0
 Paulina;4;4;3
+petrus;0;1;0
+s;0;1;0
