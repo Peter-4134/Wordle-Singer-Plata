@@ -39,7 +39,6 @@ public class Users {
      *
      * @param user hinzuzufügender user
      */
-
     public void add(User user) {
         users.add(user);
         List<String> out = new ArrayList<>();

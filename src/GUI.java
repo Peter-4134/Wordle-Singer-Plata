@@ -81,7 +81,6 @@ public class GUI extends Application {
      *
      * @param difficulty: Schwierigkeitsgrad, verändert Rateversuche
      */
-
     public void game(int difficulty, Stage stage) {
         this.currentDifficulty = difficulty;
 
@@ -186,7 +185,12 @@ public class GUI extends Application {
 
     }
 
-
+    /**
+     * Prüft, ob alle Zeichen im übergebenen Array dem Zeichen 'g' (grün) entsprechen.
+     *
+     * @param c Das zu prüfende Zeichenarray.
+     * @return true, wenn alle Zeichen im Array 'g' sind, andernfalls false.
+     */
     private boolean isWin(char[] c) {
         for (char ch : c) {
             if (ch != 'g') return false;
@@ -194,15 +198,17 @@ public class GUI extends Application {
         return true;
     }
 
-    /**
-     * Zeigt dem Benutzer einen Dialog zum Spielende an, der eine Nachricht sowie die Möglichkeit enthält,
-     * das Spiel neu zu starten.
-     *
-     * @param message Die im Dialog angezeigte Nachricht. Wird normalerweise verwendet,
-     *                um das Spielergebnis mitzuteilen.
-     * @param stage   Das Hauptfenster der Anwendung, das als Besitzer des Dialogs dient.
-     */
 
+    /**
+     * Zeigt einen Dialog am Ende des Spiels an, abhängig vom Ausgang des Spiels.
+     * Je nach Ergebnis wird eine entsprechende Nachricht angezeigt. Der Benutzer
+     * kann das Spiel neu starten oder – im Falle eines Sieges – zusätzliche
+     * Gewinnstatistiken einsehen.
+     *
+     * @param message   Die im Dialog anzuzeigende Nachricht, die das Spielergebnis beschreibt.
+     * @param stage     Das Hauptfenster der Anwendung, dem dieser Dialog zugeordnet ist.
+     * @param gewonnen  Gibt an, ob der Benutzer das Spiel gewonnen hat (true) oder nicht (false).
+     */
     private void showEndDialog(String message, Stage stage, boolean gewonnen) {
         Stage dialog = new Stage();
         dialog.initOwner(stage);
@@ -261,7 +267,6 @@ public class GUI extends Application {
      * @param s: Eingabe des Benutzernamens
      * @return: ober die Eingabe aktzeptabel ist
      */
-
     public boolean manageUser(String s) {
         if (user.checkUser(s)) {
             user = user.selectUser(s);
@@ -276,7 +281,6 @@ public class GUI extends Application {
      * @param f: Box die geändert werden soll
      * @param c: farbe auf die sie geändert werden soll
      */
-
     public void changeBoxColor(TextField[] f, char[] c) {
         for (int i = 0; i < f.length; i++) {
             if (c[i] == 'g') {
