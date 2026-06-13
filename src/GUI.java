@@ -63,6 +63,8 @@ public class GUI extends Application {
         vBox.getChildren().addAll(info, username, hBox);
         Scene scene = new Scene(vBox, 250, 150);
 
+
+
         easy.setOnAction(event -> {
             if (manageUser(username.getText())) game(1, stage);
         });
